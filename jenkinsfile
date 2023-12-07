@@ -6,7 +6,7 @@ pipeline {
             steps {
                 script {
                     // Run Docker Compose to build and run your containers
-                    sh 'docker-compose -f docker-compose.dev.yml up --build'
+                    sh 'docker-compose -f docker-compose.dev.yaml up --build'
                 }
             }
         }
