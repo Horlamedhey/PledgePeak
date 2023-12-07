@@ -1,0 +1,52 @@
+version: "3.8"
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.dev.yaml
+    image: pledge-peak-backend:1.0.0
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/usr/src/app # Mount the backend code for live reloading
+      - /usr/src/app/node_modules # Keep node_modules on the container
+    environment:
+      - MONGODB_URI=mongodb://mongodb:27017/pledgepeak
+      - AWS_ACCESS_KEY_ID=your_access_key
+      - AWS_SECRET_ACCESS_KEY=your_secret_key
+    depends_on:
+      - mongodb
+    networks:
+      - pledgepeak-network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev.yaml
+    image: pledge-peak-frontend:1.0.0
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/usr/src/app # Mount the frontend code for live reloading
+      - /usr/src/app/node_modules # Keep node_modules on the container
+    depends_on:
+      - backend
+    networks:
+      - pledgepeak-network
+
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - pledgepeak-network
+
+networks:
+  pledgepeak-network:
+    driver: bridge
+
+volumes:
+  mongodb_data:

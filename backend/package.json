@@ -1,0 +1,42 @@
+{
+  "name": "pledge-peak-backend",
+  "version": "0.1.0",
+  "description": "Backend for the PledgePeak crowdfunding platform",
+  "main": "src/app.js",
+  "author": "VaryAble",
+  "license": "MIT",
+  "scripts": {
+    "start": "node main",
+    "dev": "nodemon main",
+    "test": "mocha --timeout 10000 --exit",
+    "lint": "eslint .",
+    "build": "echo 'No build step required for backend'",
+    "prettify": "prettier --write ."
+  },
+  "dependencies": {
+    "@apollo/server-plugin-response-cache": "^4.1.3",
+    "@graphql-tools/schema": "^10.0.2",
+    "apollo-server-express": "^3.13.0",
+    "aws-sdk": "^2.1513.0",
+    "cors": "^2.8.5",
+    "dataloader": "^2.2.2",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-rate-limit": "^7.1.5",
+    "express-validator": "^7.0.1",
+    "graphql": "^16.8.1",
+    "graphql-query-complexity": "^0.12.0",
+    "mongoose": "^8.0.2",
+    "morgan": "^1.10.0",
+    "swagger-ui-express": "^5.0.0",
+    "winston": "^3.11.0"
+  },
+  "devDependencies": {
+    "chai": "^4.3.10",
+    "chai-http": "^4.4.0",
+    "mocha": "^10.2.0",
+    "nodemon": "^3.0.2",
+    "sinon": "^17.0.1",
+    "supertest": "^6.3.3"
+  }
+}
